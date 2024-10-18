@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuesta de Compra - DaMar E-Shop13</title>
+    <title>Catálogo de Zapatos - DaMar E-Shop13</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,31 +39,81 @@
         button:hover {
             background-color: #218838;
         }
+        .catalog-section {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .catalog-section h2 {
+            margin-bottom: 10px;
+        }
+        .catalog-item {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
-<h1>Encuesta de Compra</h1>
-<p>Por favor completa esta encuesta con tus datos para realizar la compra del zapato que deseas. Al presionar "Comprar", serás redirigido a WhatsApp para finalizar el proceso.</p>
+<h1>Catálogo de Zapatos - DaMar E-Shop13</h1>
+<p>Selecciona los zapatos que deseas comprar. Al presionar "Comprar", serás redirigido a WhatsApp para finalizar el proceso.</p>
 
 <form id="purchaseForm">
+    <h2>Datos del Cliente</h2>
     <input type="text" id="nombre" placeholder="Nombre" required>
     <input type="text" id="apellido" placeholder="Apellido" required>
     <input type="text" id="direccion" placeholder="Dirección" required>
     <input type="text" id="ciudad" placeholder="Ciudad" required>
-    <select id="talla" required>
-        <option value="">Selecciona tu talla de zapato</option>
-        <option value="36">36</option>
-        <option value="37">37</option>
-        <option value="38">38</option>
-        <option value="39">39</option>
-        <option value="40">40</option>
-        <option value="41">41</option>
-        <option value="42">42</option>
-        <option value="43">43</option>
-        <option value="44">44</option>
-    </select>
-    <input type="text" id="zapato" placeholder="Nombre del zapato" required>
+
+    <div class="catalog-section">
+        <h2>Adidas</h2>
+        <div class="catalog-item">
+            <label>Adidas 3 Hombres (120 mil envío gratis)</label><br>
+            <select id="adidas3hombres">
+                <option value="">Selecciona un color</option>
+                <option value="Blancas">Blancas</option>
+                <option value="Negras">Negras</option>
+                <option value="Grises">Grises</option>
+                <option value="Azules">Azules</option>
+            </select>
+        </div>
+        <div class="catalog-item">
+            <label>Adidas Roca (120 mil)</label><br>
+            <select id="adidasroca">
+                <option value="">Selecciona un color</option>
+                <option value="Negras con Blancas">Negras con Blancas</option>
+                <option value="Totalmente Negras">Totalmente Negras</option>
+                <option value="Blancas">Blancas</option>
+                <option value="Grises">Grises</option>
+            </select>
+        </div>
+        <!-- Puedes añadir más artículos de Adidas aquí -->
+    </div>
+
+    <div class="catalog-section">
+        <h2>Nike</h2>
+        <div class="catalog-item">
+            <label>Nike Air (120 mil)</label><br>
+            <select id="nikeair">
+                <option value="">Selecciona un color</option>
+                <option value="Blancas">Blancas</option>
+                <option value="Azul Oscuro">Azul Oscuro</option>
+                <option value="Negras">Negras</option>
+                <option value="Grises">Grises</option>
+            </select>
+        </div>
+        <div class="catalog-item">
+            <label>Nike Dunk Sb (130 mil)</label><br>
+            <select id="nikedunksb">
+                <option value="">Selecciona un color</option>
+                <option value="Rojas con Blancas">Rojas con Blancas</option>
+                <option value="Negras con Blanco">Negras con Blanco</option>
+                <option value="Naranja con Blanco">Naranja con Blanco</option>
+                <option value="Verde Aguamanira">Verde Aguamanira</option>
+                <option value="Palo Rosa">Palo Rosa</option>
+            </select>
+        </div>
+        <!-- Puedes añadir más artículos de Nike aquí -->
+    </div>
+
     <button type="button" onclick="sendOrder()">Comprar</button>
 </form>
 
@@ -73,15 +123,35 @@
         var apellido = document.getElementById("apellido").value;
         var direccion = document.getElementById("direccion").value;
         var ciudad = document.getElementById("ciudad").value;
-        var talla = document.getElementById("talla").value;
-        var zapato = document.getElementById("zapato").value;
-        
-        var orderDetails = Hola, soy ${nombre} ${apellido}, vivo en ${direccion}, ${ciudad}. Quiero comprar el zapato ${zapato} en la talla ${talla}.;
+
+        // Recoger las selecciones de los zapatos
+        var adidas3hombres = document.getElementById("adidas3hombres").value;
+        var adidasroca = document.getElementById("adidasroca").value;
+        var nikeair = document.getElementById("nikeair").value;
+        var nikedunksb = document.getElementById("nikedunksb").value;
+
+        var orderDetails = Hola, soy ${nombre} ${apellido}, vivo en ${direccion}, ${ciudad}. Quiero comprar los siguientes zapatos:\n;
+
+        if (adidas3hombres) {
+            orderDetails += - Adidas 3 Hombres (${adidas3hombres}) - 120 mil\n;
+        }
+        if (adidasroca) {
+            orderDetails += - Adidas Roca (${adidasroca}) - 120 mil\n;
+        }
+        if (nikeair) {
+            orderDetails += - Nike Air (${nikeair}) - 120 mil\n;
+        }
+        if (nikedunksb) {
+            orderDetails += - Nike Dunk Sb (${nikedunksb}) - 130 mil\n;
+        }
 
         var whatsappUrl = "https://wa.me/573170296998?text=" + encodeURIComponent(orderDetails);
         window.open(whatsappUrl, '_blank');
     }
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
